@@ -22,6 +22,7 @@ namespace CityInfoWithLayerArchitectureApp
 
         bool isUpdateMode = false;
         int selectedCityId = 0;
+
         private void saveButton_Click(object sender, EventArgs e)
         {
             City aCity = new City();
@@ -100,7 +101,7 @@ namespace CityInfoWithLayerArchitectureApp
             isUpdateMode = true;
             saveButton.Text = "Update";
             nameTextBox.Enabled = false;
-            //  MessageBox.Show(manager.UpdateCity(aCity));
+           
 
 
         }
@@ -111,6 +112,52 @@ namespace CityInfoWithLayerArchitectureApp
             aboutTextBox.Clear();
             countryTextBox.Clear();
         }
-      
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            int id = 1;
+
+            string search = searchTextBox.Text;
+
+
+
+
+            List<City> cityList = new List<City>();
+
+            cityListView.Items.Clear();
+
+            if (cityRadioButton.Checked == true)
+            {
+
+                foreach (var City in manager.GetSearchCityListByCity(cityList, search))
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Text = id.ToString();
+                    item.SubItems.Add(City.cityName);
+                    item.SubItems.Add(City.About);
+                    item.SubItems.Add(City.Country);
+
+                    cityListView.Items.Add(item);
+                    id++;
+                }
+
+            }
+            else if(countryRadioButton.Checked==true)
+            {
+
+                foreach (var City in manager.GetSearchCityListByCountry(cityList, search))
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Text = id.ToString();
+                    item.SubItems.Add(City.cityName);
+                    item.SubItems.Add(City.About);
+                    item.SubItems.Add(City.Country);
+
+                    cityListView.Items.Add(item);
+                    id++;
+                }
+            }
+
+        }
     }
 }

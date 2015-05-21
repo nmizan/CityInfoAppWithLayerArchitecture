@@ -62,6 +62,24 @@ namespace CityInfoWithLayerArchitectureApp.BLL
                
            
         }
+
+
+
+        public List<City> GetSearchCityListByCity(List<City> cityList,string search)
+        {
+
+
+            return gateway.SearchByCity(cityList,search);
+
+        }
+
+        public List<City> GetSearchCityListByCountry(List<City> cityList, string search)
+        {
+
+
+            return gateway.SearchByCountry(cityList, search);
+
+        }
         
     }
  }

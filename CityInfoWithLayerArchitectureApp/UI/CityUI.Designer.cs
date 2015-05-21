@@ -109,6 +109,7 @@
             this.searchButton.TabIndex = 2;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // countryRadioButton
             // 
@@ -224,7 +225,6 @@
             this.Name = "CityUI";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.CityUI_Load);
-            //this.DoubleClick += new System.EventHandler(this.CityUI_DoubleClick);
             this.searchGroupBox.ResumeLayout(false);
             this.searchGroupBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);

@@ -90,5 +90,79 @@ namespace CityInfoWithLayerArchitectureApp.DAL
             return rowAffected;
             
         }
+
+        public List<City> SearchByCity(List<City> Cities,string search)
+        {
+            Cities = new List<City>();
+
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            string query = "SELECT Name,About,Country From City WHERE Name LIKE '" + search + "%'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                City cities1 = new City();
+
+                cities1.cityName = reader["Name"].ToString();
+                cities1.About = reader["About"].ToString();
+                cities1.Country = reader["Country"].ToString();
+
+                Cities.Add(cities1);
+
+            }
+
+            reader.Close();
+            connection.Close();
+
+            return Cities;
+        }
+
+        public List<City> SearchByCountry(List<City> Cities, string search)
+        {
+            Cities = new List<City>();
+
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            string query = "SELECT Name,About,Country From City WHERE Country LIKE '" + search + "%'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                City cities2 = new City();
+
+                cities2.cityName = reader["Name"].ToString();
+                cities2.About = reader["About"].ToString();
+                cities2.Country = reader["Country"].ToString();
+
+                Cities.Add(cities2);
+
+            }
+
+            reader.Close();
+            connection.Close();
+
+            return Cities;
+        }
     }
 }
+
+
+
+           
+
+        
+        
+        
+        
+ 
